@@ -1,6 +1,7 @@
 package com.example.tomas.material;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +21,7 @@ public class activiry_recicler extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activiry_recicler);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.barra);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.mitoolbar);
         setSupportActionBar(toolbar);
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.lista);
@@ -27,6 +30,14 @@ public class activiry_recicler extends AppCompatActivity {
         List<Jugador> listajugador = Arrays.asList(new Jugador(R.mipmap.ic_launcher,"CR7"),
                                                    new Jugador(R.mipmap.ic_launcher,"Zlatan Ibraimovich")
                                                    );
+        FloatingActionButton botonflotante = (FloatingActionButton) findViewById(R.id.botonflotante);
+        botonflotante.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"BOTON FLOTANTE",Toast.LENGTH_LONG).show();
+            }
+        });
+
         Adaptador adapter = new Adaptador(listajugador);
         rv.setAdapter(adapter);
     }

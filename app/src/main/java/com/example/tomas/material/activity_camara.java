@@ -3,19 +3,20 @@ package com.example.tomas.material;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class activity_camara extends ActionBarActivity {
+public class activity_camara extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_camara);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.barra);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.mitoolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setHomeButtonEnabled(true);
