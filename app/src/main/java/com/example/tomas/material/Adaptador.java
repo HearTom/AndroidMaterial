@@ -1,6 +1,5 @@
 package com.example.tomas.material;
 
-import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,7 @@ import android.widget.Toast;
 import java.util.List;
 
 /**
- * Created by Tomas on 19/05/2015.
+ * Created by Tomas
  */
 public class Adaptador extends RecyclerView.Adapter<Adaptador.JugadorViewHolder> {
 
@@ -25,8 +24,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.JugadorViewHolder>
     @Override
     public JugadorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item,parent,false);
-        JugadorViewHolder holder = new JugadorViewHolder(v);
-        return holder;
+        return new JugadorViewHolder(v);
     }
 
     @Override
@@ -52,6 +50,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.JugadorViewHolder>
             txtjugador = (TextView) itemView.findViewById(R.id.txtjugador);
 
         }
+
 
         @Override
         public void onClick(View v) {
