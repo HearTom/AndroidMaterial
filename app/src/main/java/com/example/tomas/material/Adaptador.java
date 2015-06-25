@@ -38,23 +38,17 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.JugadorViewHolder>
         return listajugador.size();
     }
 
-    public static class JugadorViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    public static class JugadorViewHolder extends RecyclerView.ViewHolder
     {
         ImageView imgjugador;
         TextView txtjugador;
 
         public JugadorViewHolder(View itemView) {
             super(itemView);
-            itemView.setOnClickListener(this);
             imgjugador = (ImageView) itemView.findViewById(R.id.imgjugador);
             txtjugador = (TextView) itemView.findViewById(R.id.txtjugador);
 
         }
 
-
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(v.getContext(),"CLICK",Toast.LENGTH_SHORT).show();
-        }
     }
 }

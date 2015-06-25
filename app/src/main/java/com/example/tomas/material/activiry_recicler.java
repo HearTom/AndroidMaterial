@@ -38,6 +38,12 @@ public class activiry_recicler extends AppCompatActivity {
             }
         });
 
+        rv.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                 Toast.makeText(getApplicationContext(),position+"",Toast.LENGTH_SHORT).show();
+            }
+        }));
         Adaptador adapter = new Adaptador(listajugador);
         rv.setAdapter(adapter);
     }
