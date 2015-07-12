@@ -7,15 +7,32 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class activiry_recicler extends AppCompatActivity {
+
+    JsonObjectRequest array;
+    RequestQueue mRequestQueue;
+    private final String url = "http://192.168.1.22:8080/Proyecto/public/jugador";
+    private final String TAG = "PRUEBITA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +41,7 @@ public class activiry_recicler extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.mitoolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView rv = (RecyclerView) findViewById(R.id.lista);
+        final RecyclerView rv = (RecyclerView) findViewById(R.id.lista);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
         List<Jugador> listajugador = Arrays.asList(new Jugador(R.mipmap.ic_launcher,"CR7"),
@@ -44,8 +61,43 @@ public class activiry_recicler extends AppCompatActivity {
                  Toast.makeText(getApplicationContext(),position+"",Toast.LENGTH_SHORT).show();
             }
         }));
-        Adaptador adapter = new Adaptador(listajugador);
-        rv.setAdapter(adapter);
+
+        mRequestQueue = VolleySingleton.getInstance().getmRequestQueue();
+        array = new JsonObjectRequest(Request.Method.GET, url, "", new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, response.toString());
+                Adaptador adapter = new Adaptador(getJugadores(response));
+                rv.setAdapter(adapter);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, error.toString());
+            }
+        });
+        mRequestQueue.add(array);
+    }
+
+    private List<Jugador> getJugadores(JSONObject jsonObject)
+    {
+        List<Jugador> lista = new ArrayList<>();
+        try {
+            JSONArray array = jsonObject.getJSONArray("jugador");
+            for(int i = 0 ;i<array.length();i++)
+            {
+                JSONObject objeto = array.getJSONObject(i);
+                Jugador jugador = new Jugador();
+                jugador.setNombre(objeto.getString("nombre_jugador"));
+                jugador.setEquipo(objeto.getString("equipo"));
+                jugador.setIdjugador(objeto.getInt("id"));
+                jugador.setFoto(R.mipmap.ic_launcher);
+                lista.add(jugador);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return lista;
     }
 
     @Override

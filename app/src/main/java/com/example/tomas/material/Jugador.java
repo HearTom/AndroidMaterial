@@ -7,6 +7,14 @@ public class Jugador {
 
     private int foto ;
     private String nombre;
+    private int idjugador;
+    private String equipo;
+
+    public Jugador ()
+    {
+
+    }
+
 
     public Jugador(int foto, String nombre) {
         this.foto = foto;
@@ -27,5 +35,21 @@ public class Jugador {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getIdjugador() {
+        return idjugador;
+    }
+
+    public void setIdjugador(int idjugador) {
+        this.idjugador = idjugador;
+    }
+
+    public String getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(String equipo) {
+        this.equipo = equipo;
     }
 }
