@@ -1,5 +1,6 @@
 package com.example.tomas.material;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -31,8 +32,9 @@ public class activiry_recicler extends AppCompatActivity {
 
     JsonObjectRequest array;
     RequestQueue mRequestQueue;
-    private final String url = "http://192.168.1.22:8080/Proyecto/public/jugador";
+    private final String url = "http://192.168.1.22:8000/Sicom/public/jugador";
     private final String TAG = "PRUEBITA";
+    private List<Jugador> lista_jugador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +46,12 @@ public class activiry_recicler extends AppCompatActivity {
         final RecyclerView rv = (RecyclerView) findViewById(R.id.lista);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
-        List<Jugador> listajugador = Arrays.asList(new Jugador(R.mipmap.ic_launcher,"CR7"),
-                                                   new Jugador(R.mipmap.ic_launcher,"Zlatan Ibraimovich")
-                                                   );
+
         FloatingActionButton botonflotante = (FloatingActionButton) findViewById(R.id.botonflotante);
         botonflotante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"BOTON FLOTANTE",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "BOTON FLOTANTE", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -59,6 +59,7 @@ public class activiry_recicler extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                  Toast.makeText(getApplicationContext(),position+"",Toast.LENGTH_SHORT).show();
+                 Jugador jugador = lista_jugador.get(position);
             }
         }));
 
@@ -67,7 +68,8 @@ public class activiry_recicler extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 Log.d(TAG, response.toString());
-                Adaptador adapter = new Adaptador(getJugadores(response));
+                lista_jugador = getJugadores(response);
+                Adaptador adapter = new Adaptador(lista_jugador);
                 rv.setAdapter(adapter);
             }
         }, new Response.ErrorListener() {
@@ -91,7 +93,7 @@ public class activiry_recicler extends AppCompatActivity {
                 jugador.setNombre(objeto.getString("nombre_jugador"));
                 jugador.setEquipo(objeto.getString("equipo"));
                 jugador.setIdjugador(objeto.getInt("id"));
-                jugador.setFoto(R.mipmap.ic_launcher);
+                jugador.setFoto(objeto.getString("foto"));
                 lista.add(jugador);
             }
         } catch (JSONException e) {
@@ -106,6 +108,8 @@ public class activiry_recicler extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_activiry_recicler, menu);
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

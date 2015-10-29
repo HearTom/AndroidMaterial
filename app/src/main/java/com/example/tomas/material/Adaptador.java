@@ -1,5 +1,6 @@
 package com.example.tomas.material;
 
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.toolbox.NetworkImageView;
 
 import java.util.List;
 
@@ -29,8 +32,9 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.JugadorViewHolder>
 
     @Override
     public void onBindViewHolder(JugadorViewHolder holder, int position) {
-       holder.imgjugador.setImageResource(listajugador.get(position).getFoto());
+       holder.imgjugador.setImageUrl(listajugador.get(position).getFoto(),VolleySingleton.getInstance().getImageLoader());
        holder.txtjugador.setText(listajugador.get(position).getNombre());
+        holder.txtequipo.setText(listajugador.get(position).getEquipo());
     }
 
     @Override
@@ -40,13 +44,18 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.JugadorViewHolder>
 
     public static class JugadorViewHolder extends RecyclerView.ViewHolder
     {
-        ImageView imgjugador;
+        NetworkImageView imgjugador;
         TextView txtjugador;
+        TextView txtequipo;
 
         public JugadorViewHolder(View itemView) {
             super(itemView);
-            imgjugador = (ImageView) itemView.findViewById(R.id.imgjugador);
+            Typeface font = Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/Roboto-Regular.ttf");
+            imgjugador = (NetworkImageView) itemView.findViewById(R.id.imgjugador);
             txtjugador = (TextView) itemView.findViewById(R.id.txtjugador);
+            txtequipo = (TextView) itemView.findViewById(R.id.txtequipo);
+            txtjugador.setTypeface(font);
+            txtequipo.setTypeface(font);
 
         }
 

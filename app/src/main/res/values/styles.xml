@@ -6,7 +6,7 @@
 
     </style>
 
-    <style name="Material.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Material.Base" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#3F51B5</item>
         <item name="colorPrimaryDark">#303F9F</item>

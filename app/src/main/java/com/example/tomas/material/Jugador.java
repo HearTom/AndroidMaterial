@@ -5,7 +5,7 @@ package com.example.tomas.material;
  */
 public class Jugador {
 
-    private int foto ;
+    private String foto ;
     private String nombre;
     private int idjugador;
     private String equipo;
@@ -16,16 +16,16 @@ public class Jugador {
     }
 
 
-    public Jugador(int foto, String nombre) {
+    public Jugador(String foto, String nombre) {
         this.foto = foto;
         this.nombre = nombre;
     }
 
-    public int getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(int foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 
