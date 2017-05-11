@@ -1,10 +1,8 @@
 package com.example.tomas.material;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -25,7 +23,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class activiry_recicler extends AppCompatActivity {
@@ -58,8 +55,8 @@ public class activiry_recicler extends AppCompatActivity {
         rv.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                 Toast.makeText(getApplicationContext(),position+"",Toast.LENGTH_SHORT).show();
-                 Jugador jugador = lista_jugador.get(position);
+                Toast.makeText(getApplicationContext(), position + "", Toast.LENGTH_SHORT).show();
+                Jugador jugador = lista_jugador.get(position);
             }
         }));
 
@@ -81,13 +78,11 @@ public class activiry_recicler extends AppCompatActivity {
         mRequestQueue.add(array);
     }
 
-    private List<Jugador> getJugadores(JSONObject jsonObject)
-    {
+    private List<Jugador> getJugadores(JSONObject jsonObject) {
         List<Jugador> lista = new ArrayList<>();
         try {
             JSONArray array = jsonObject.getJSONArray("jugador");
-            for(int i = 0 ;i<array.length();i++)
-            {
+            for (int i = 0; i < array.length(); i++) {
                 JSONObject objeto = array.getJSONObject(i);
                 Jugador jugador = new Jugador();
                 jugador.setNombre(objeto.getString("nombre_jugador"));
@@ -108,7 +103,6 @@ public class activiry_recicler extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_activiry_recicler, menu);
         return true;
     }
-
 
 
     @Override

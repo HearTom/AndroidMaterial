@@ -8,5 +8,6 @@
     <string name="title_activity_activity_camara">activity_camara</string>
     <string name="title_activity_activiry_recicler">activiry_recicler</string>
     <string name="menu_recicler">ReciclerView</string>
+    <string name="jugador">Jugador</string>
 
 </resources>

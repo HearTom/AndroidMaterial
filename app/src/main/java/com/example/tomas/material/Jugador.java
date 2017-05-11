@@ -1,8 +1,6 @@
 package com.example.tomas.material;
 
-/**
- * Created by Tomas on 19/05/2015.
- */
+
 public class Jugador {
 
     private String foto ;
@@ -16,9 +14,10 @@ public class Jugador {
     }
 
 
-    public Jugador(String foto, String nombre) {
+    public Jugador(String foto, String nombre,String equipo) {
         this.foto = foto;
         this.nombre = nombre;
+        this.equipo = equipo;
     }
 
     public String getFoto() {
