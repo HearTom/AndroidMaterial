@@ -5,17 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.toolbox.NetworkImageView;
 
 import java.util.List;
 
-/**
- * Created by Tomas
- */
 public class Adaptador extends RecyclerView.Adapter<Adaptador.JugadorViewHolder> {
 
     List<Jugador> listajugador;
@@ -26,14 +21,14 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.JugadorViewHolder>
 
     @Override
     public JugadorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item, parent, false);
         return new JugadorViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(JugadorViewHolder holder, int position) {
-       holder.imgjugador.setImageUrl(listajugador.get(position).getFoto(),VolleySingleton.getInstance().getImageLoader());
-       holder.txtjugador.setText(listajugador.get(position).getNombre());
+        holder.imgjugador.setImageUrl(listajugador.get(position).getFoto(), VolleySingleton.getInstance().getImageLoader());
+        holder.txtjugador.setText(listajugador.get(position).getNombre());
         holder.txtequipo.setText(listajugador.get(position).getEquipo());
     }
 
@@ -42,8 +37,8 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.JugadorViewHolder>
         return listajugador.size();
     }
 
-    public static class JugadorViewHolder extends RecyclerView.ViewHolder
-    {
+
+    public static class JugadorViewHolder extends RecyclerView.ViewHolder {
         NetworkImageView imgjugador;
         TextView txtjugador;
         TextView txtequipo;
@@ -56,7 +51,6 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.JugadorViewHolder>
             txtequipo = (TextView) itemView.findViewById(R.id.txtequipo);
             txtjugador.setTypeface(font);
             txtequipo.setTypeface(font);
-
         }
 
     }

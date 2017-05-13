@@ -2,6 +2,7 @@ package com.example.tomas.material;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -37,6 +38,10 @@ public class RecyclerViewSimple extends AppCompatActivity {
 
         Adaptador adaptador = new Adaptador(jugadorList);
         rv_jugador.setAdapter(adaptador);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,llm.getOrientation());
+        rv_jugador.addItemDecoration(dividerItemDecoration);
+
 
         rv_jugador.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
